@@ -411,7 +411,8 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)prepareForDisplay
 {
-    [self cleanup];
+    [self.navBarController expand];
+    self.previousYOffset = NAN;
 }
 
 - (void)layoutViews
@@ -425,7 +426,6 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)cleanup
 {
-    [self.navBarController expand];
     self.previousYOffset = NAN;
 }
 
