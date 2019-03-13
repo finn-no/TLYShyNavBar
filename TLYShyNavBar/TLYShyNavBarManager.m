@@ -91,11 +91,6 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
         /* Notification helpers */
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidBecomeActive:)
-                                                     name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationDidChangeStatusBarFrame:)
                                                      name:UIApplicationDidChangeStatusBarFrameNotification
                                                    object:nil];
@@ -411,7 +406,6 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (void)prepareForDisplay
 {
-    [self.navBarController expand];
     self.previousYOffset = NAN;
 }
 
@@ -456,13 +450,6 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 }
 
 #pragma mark - NSNotificationCenter methods
-
-- (void)applicationDidBecomeActive:(NSNotification *)notification
-{
-    if (self.scrollView.window) {
-        [self.navBarController expand];
-    }
-}
 
 - (void)applicationDidChangeStatusBarFrame:(NSNotification *)notification
 {
